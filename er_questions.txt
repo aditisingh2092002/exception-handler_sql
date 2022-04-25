@@ -1,0 +1,20 @@
+1. Enter an employee id from the user. If it exists, display the detail, otherwise, show a user defined error.
+
+2. Let empid 100 has been suspended from the company. Update the salary of the inputted empid with a increment of 15% except empid 100.
+	a.	Show an error message for this type of exception.
+	b.	Show an error code and error message for this.
+	c.	Link the error code to the exception name.
+
+3. Write a PL/SQL block to retrieve employees from the EMPLOYEE table based on a qualification Id. 
+If the qualification Id returns more than one row, handle the exception with the appropriate handler 
+and print the message  More than one employee with such qualification . 
+If the qualification Id returns no employee, handle the exception with the appropriate handler and
+ display the message  No employees with such qualification . If the qualification Id returns one employee,
+  then print that employee s name, qualification and salary (predefined server exception problem).
+
+
+
+4. Write a procedure that is passed a students identification number and returns
+ back the students full name and phone number from the STUDENT table to the calling 
+ program.
+ Also write an anonymous block with the procedure call.
