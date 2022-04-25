@@ -1,0 +1,26 @@
+3. Write a PL/SQL block to retrieve employees from the EMPLOYEE table based on a qualification Id. 
+If the qualification Id returns more than one row, handle the exception with the appropriate handler 
+and print the message  More than one employee with such qualification . 
+If the qualification Id returns no employee, handle the exception with the appropriate handler and
+ display the message  No employees with such qualification . If the qualification Id returns one employee,
+  then print that employee s name, qualification and salary (predefined server exception problem).
+
+DECLARE
+fi employee.Fname%TYPE;
+la employee.Lname%TYPE;
+qual employee.QualId%TYPE;
+Sal employee.Salary%TYPE;
+v_qualid employee.QualId%TYPE := &Qualification_Id;
+BEGIN
+SELECT Lname, Fname, QualId, Salary INTO la, fi, qual, sal
+FROM employee WHERE QualId = v_qualid;
+DBMS_OUTPUT.PUT_LINE (la || ', ' || fi) ;
+DBMS_OUTPUT.PUT_LINE( 'Qualification: ' || qual) ;
+DBMS_OUTPUT.PUT_LINE( 'Salary: ' || sal) ;
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+DBMS_OUTPUT.PUT_LINE('No employees with such qualification') ;
+WHEN TOO_MANY_ROWS THEN
+DBMS_OUTPUT.PUT_LINE('More than employee with qualification'||v_qualid) ;
+END;
+/
