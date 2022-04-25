@@ -1,0 +1,18 @@
+1.Enter an employee id from the user. If it exists, display the detail, otherwise, show a user defined error.
+
+DECLARE 
+        invalid_eid EXCEPTION;
+        empid NUMBER;
+        ename employee.fname%TYPE;
+        sal employee.salary%TYPE;
+BEGIN
+      empid:=&empid;
+      SELECT FNAME,SALARY into ename,sal FROM employee where eid=empid;
+      DBMS_OUTPUT.PUT_LINE(ename);
+      DBMS_OUTPUT.PUT_LINE(sal);
+     
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+          DBMS_OUTPUT.PUT_LINE('No employee id ');
+END;
+/
