@@ -1,0 +1,30 @@
+2. Let empid 100 has been suspended from the company. Update the salary of the inputted empid with a increment of 15% except empid 100.
+	a.	Show an error message for this type of exception.
+	b.	Show an error code and error message for this.
+	c.	Link the error code to the exception name.
+
+
+DECLARE 
+        invalid_eid EXCEPTION;
+        empid NUMBER;
+        ename employee.fname%TYPE;
+        sal employee.salary%TYPE;
+        PRAGMA EXCEPTION_INIT(invalid_eid, 100);
+BEGIN
+      empid:=&empid;
+      SELECT FNAME,SALARY into ename,sal FROM employee where eid=empid;
+      IF empid=100 THEN
+       RAISE invalid_eid;
+      ELSE
+     UPDATE employee
+     SET salary = salary + (salary *0.15);
+     DBMS_OUTPUT.PUT_LINE('name:'||ename);
+     DBMS_OUTPUT.PUT_LINE('salary:'||sal);
+     end if;
+EXCEPTION
+    WHEN invalid_eid THEN
+    DBMS_OUTPUT.PUT_LINE(SQLERRM ||'eid is 100');
+   WHEN OTHERS THEN
+     DBMS_OUTPUT.PUT_LINE('NO SUCH ID');
+END;
+/
