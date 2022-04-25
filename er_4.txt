@@ -1,0 +1,22 @@
+4. Write a procedure that is passed a students identification number and returns back the students full name and phone number from the STUDENT table to the calling program.
+Also write an anonymous block with the procedure call.
+
+CREATE OR REPLACE PROCEDURE searchstu(stuid IN NUMBER,ls OUT VARCHAR, fn OUT VARCHAR,ph OUT NUMBER) IS
+BEGIN
+SELECT last,first,phone INTO ls,fn,ph FROM student WHERE studentid=stuid;
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE(stuid||'does not exist');
+END searchstu;
+
+DECLARE
+vls student.last%TYPE;
+vfn student.first%TYPE;
+vstuid student.studentid%TYPE;
+vph student.phone%TYPE;
+BEGIN
+vstuid:=&vstuid;
+searchstu(vstuid,vls,vfn,vph);
+DBMS_OUTPUT.PUT_LINE(vstuid||' '||vfn||' '||vls||' '||vph);
+END;
+/
